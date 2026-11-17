@@ -144,9 +144,21 @@ void circle(sil::Image& image, int thickness)
     }
 }
 
-void animation(sil::Image& image)
+void animation(sil::Image& image, int center)
 {
-
+    bool in{};
+    for (int x{0}; x < image.width(); x++)
+    {
+        for (int y{0}; y < image.height(); y++)
+        {
+            if (std::pow((x-center), 2)+std::pow((y-(image.height()/2)), 2)<= std::pow(150, 2)){
+                in=true;
+            } else {
+                in=false;
+            }
+            image.pixel(x, y) = glm::vec3{in ? 1.f : 0.f};
+        }
+    }
 }
 
 void rose_window(sil::Image& image)
@@ -222,18 +234,21 @@ int main()
     //     disk(image);
     //     image.save("output/2-Stars/disk.png");
     // }
+    // {
+    //     sil::Image image{500, 500};
+    //     circle(image, 20);
+    //     image.save("output/2-Stars/circle.png");
+    // }
     {
         sil::Image image{500, 500};
-        circle(image, 20);
-        image.save("output/2-Stars/circle.png");
+        for (int x{0}; x < image.width(); x+=5)
+        {
+            animation(image, x);
+            image.save("output/2-Stars/animation/"+ std::to_string(x) +"-x.png");
+        }
     }
     // {
-    //     sil::Image image{"images/logo.png"};
-    //     animation(image);
-    //     image.save("output/2-Stars/animation.png");
-    // }
-    // {
-    //     sil::Image image{"images/logo.png"};
+    //     sil::Image image{500, 500};
     //     rose_window(image);
     //     image.save("output/2-Stars/rose_window.png");
     // }

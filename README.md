@@ -57,7 +57,7 @@ J'ai finis par faire x+1 avant de changer pour image.width-1.
 
 ### Brightness
 ![Brightness light](/output/2-Stars/brightness_light.jpg "Brightness light")
-![Brightness dark](/output/2-Stars/brightness_dark.jgp "Brightness dark")
+![Brightness dark](/output/2-Stars/brightness_dark.jpg "Brightness dark")
 
 ### Disk
 ![Disk](/output/2-Stars/disk.png "Disk")
@@ -66,6 +66,7 @@ J'ai finis par faire x+1 avant de changer pour image.width-1.
 ![Circle](/output/2-Stars/circle.png "Circle")
 
 ##### Animation
+![Animation](/output/2-Stars/animation.gif "Animation")
 
 ##### Rose window
 
