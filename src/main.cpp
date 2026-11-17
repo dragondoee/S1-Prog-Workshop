@@ -130,17 +130,16 @@ void disk(sil::Image& image)
 
 void circle(sil::Image& image, int thickness)
 {
+    disk(image);
     bool in{};
     for (int x{0}; x < image.width(); x++)
     {
         for (int y{0}; y < image.height(); y++)
         {
-            if (std::pow((x-(image.width()/2)), 2)+std::pow((y-(image.height()/2)), 2)<= std::pow(150, 2)){
-                in=true;
-            } else {
-                in=false;
+            if (std::pow((x-(image.width()/2)), 2)+std::pow((y-(image.height()/2)), 2)<= std::pow((150-thickness), 2)){
+                image.pixel(x, y) = glm::vec3{0.f};
             }
-            image.pixel(x, y) = glm::vec3{in ? 1.f : 0.f};
+            
         }
     }
 }
