@@ -1,5 +1,5 @@
 #include <sil/sil.hpp>
-#include <iostream>
+#include <optional>
 #include "random.hpp"
 #include <cmath>
 
@@ -111,53 +111,42 @@ void brightness(sil::Image& image, bool light)
     }
 }
 
-void disk(sil::Image& image)
+void disk(sil::Image& image, std::optional<int> x_center = std::nullopt)
 {
-    bool in{};
+    if (!x_center.has_value())
+        x_center = image.width();
     for (int x{0}; x < image.width(); x++)
     {
         for (int y{0}; y < image.height(); y++)
         {
-            if (std::pow((x-(image.width()/2)), 2)+std::pow((y-(image.height()/2)), 2)<= std::pow(150, 2)){
-                in=true;
-            } else {
-                in=false;
+            if (std::pow((x-(x_center.value()/2)), 2)+std::pow((y-(image.height()/2)), 2)<= std::pow(150, 2)){
+                image.pixel(x, y) = glm::vec3{1.f};
             }
-            image.pixel(x, y) = glm::vec3{in ? 1.f : 0.f};
         }
     }
 }
 
 void circle(sil::Image& image, int thickness)
 {
-    disk(image);
-    bool in{};
     for (int x{0}; x < image.width(); x++)
     {
         for (int y{0}; y < image.height(); y++)
         {
-            if (std::pow((x-(image.width()/2)), 2)+std::pow((y-(image.height()/2)), 2)<= std::pow((150-thickness), 2)){
-                image.pixel(x, y) = glm::vec3{0.f};
+            double calc{std::pow((x-(image.width()/2)), 2) + std::pow((y-(image.height()/2)), 2)};
+            if (calc <= std::pow((150), 2) && calc >= std::pow((150-thickness), 2)){
+                image.pixel(x, y) = glm::vec3{1.f};
             }
             
         }
     }
 }
 
-void animation(sil::Image& image, int center)
+void animation(sil::Image& image)
 {
-    bool in{};
-    for (int x{0}; x < image.width(); x++)
+    for (int x{0}; x < image.width(); x+=5)
     {
-        for (int y{0}; y < image.height(); y++)
-        {
-            if (std::pow((x-center), 2)+std::pow((y-(image.height()/2)), 2)<= std::pow(150, 2)){
-                in=true;
-            } else {
-                in=false;
-            }
-            image.pixel(x, y) = glm::vec3{in ? 1.f : 0.f};
-        }
+        disk(image, x);
+        image.save("output/2-Stars/animation/"+ std::to_string(x) +"-x.png");
     }
 }
 
@@ -241,11 +230,7 @@ int main()
     // }
     {
         sil::Image image{500, 500};
-        for (int x{0}; x < image.width(); x+=5)
-        {
-            animation(image, x);
-            image.save("output/2-Stars/animation/"+ std::to_string(x) +"-x.png");
-        }
+        animation(image);
     }
     // {
     //     sil::Image image{500, 500};

@@ -8,21 +8,21 @@
 ### Channel swap
 ![Channel swap](/output/1-Star/channels_swap.png "Channel swap")
 
-### Black & White - 5 try
-Try n°1 :
+### Black & White
+Essai n°1 :
 Tout noir
 
-Try n°2 to 3 :
+Essai n°2 to 3 :
 Tout gris
 
 ![Black & White](/output/1-Star/black_white/2-black_white.png "Black & White")
 
-Try n°4 :
+Essai n°4 :
 Black and White : color = color.r + color.g + color.b;
 
 ![Black & White](/output/1-Star/black_white/4-black_white.png "Black & White")
 
-Try n°5 :
+Essai n°5 :
 Source : [transformer une image RGB en niveau de gris](https://www.developpez.net/forums/d534510/general-developpement/algorithme-mathematiques/traitement-d-images/transformer-image-rgb-niveau-gris/)
 
 ![Black & White](/output/1-Star/black_white/5-black_white.png "Black & White")
