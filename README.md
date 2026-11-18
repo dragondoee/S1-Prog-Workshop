@@ -69,5 +69,6 @@ J'ai finis par faire x+1 avant de changer pour image.width-1.
 ![Animation](/output/2-Stars/animation.gif "Animation")
 
 ##### Rose window
+![Rose window](/output/2-Stars/rose_window.png "Rose window")
 
 ### Mosaic

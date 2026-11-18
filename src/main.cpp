@@ -114,26 +114,30 @@ void brightness(sil::Image& image, bool light)
 void disk(sil::Image& image, std::optional<int> x_center = std::nullopt)
 {
     if (!x_center.has_value())
-        x_center = image.width();
+        x_center = image.width()/2;
     for (int x{0}; x < image.width(); x++)
     {
         for (int y{0}; y < image.height(); y++)
         {
-            if (std::pow((x-(x_center.value()/2)), 2)+std::pow((y-(image.height()/2)), 2)<= std::pow(150, 2)){
+            if (std::pow((x-(x_center.value())), 2)+std::pow((y-(image.height()/2)), 2)<= std::pow(150, 2)){
                 image.pixel(x, y) = glm::vec3{1.f};
             }
         }
     }
 }
 
-void circle(sil::Image& image, int thickness)
+void circle(sil::Image& image, int thickness, std::optional<int> radius=150, std::optional<int> x_center = std::nullopt, std::optional<int> y_center = std::nullopt)
 {
+    if (!x_center.has_value())
+        x_center = image.width()/2;
+    if (!y_center.has_value())
+        y_center = image.height()/2;
     for (int x{0}; x < image.width(); x++)
     {
         for (int y{0}; y < image.height(); y++)
         {
-            double calc{std::pow((x-(image.width()/2)), 2) + std::pow((y-(image.height()/2)), 2)};
-            if (calc <= std::pow((150), 2) && calc >= std::pow((150-thickness), 2)){
+            double calc{std::pow((x-(x_center.value())), 2) + std::pow((y-(y_center.value())), 2)};
+            if (calc <= std::pow((radius.value()), 2) && calc >= std::pow((radius.value()-thickness), 2)){
                 image.pixel(x, y) = glm::vec3{1.f};
             }
             
@@ -152,7 +156,20 @@ void animation(sil::Image& image)
 
 void rose_window(sil::Image& image)
 {
+    int radius{100};
+    int thinkness{10};
+    int img_x_center{image.width()/2};
+    int img_y_center{image.height()/2};
 
+    circle(image, thinkness, radius);
+
+    circle(image, thinkness, radius, img_x_center+(radius/2), img_y_center+85);
+    circle(image, thinkness, radius, img_x_center+radius-(thinkness/2));
+    circle(image, thinkness, radius, img_x_center+(radius/2), img_y_center-85);
+
+    circle(image, thinkness, radius, img_x_center-(radius/2), img_y_center+85);
+    circle(image, thinkness, radius, img_x_center-radius+(thinkness/2));
+    circle(image, thinkness, radius, img_x_center-(radius/2), img_y_center-85);
 }
 
 void mosaic(sil::Image& image)
@@ -228,13 +245,13 @@ int main()
     //     circle(image, 20);
     //     image.save("output/2-Stars/circle.png");
     // }
-    {
-        sil::Image image{500, 500};
-        animation(image);
-    }
     // {
     //     sil::Image image{500, 500};
-    //     rose_window(image);
-    //     image.save("output/2-Stars/rose_window.png");
+    //     animation(image);
     // }
+    {
+        sil::Image image{500, 500};
+        rose_window(image);
+        image.save("output/2-Stars/rose_window.png");
+    }
 }
