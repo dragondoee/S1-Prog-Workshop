@@ -1,12 +1,14 @@
 # 🐣 S1 | Prog: Workshop
 
-### ⭐ Green
+## ⭐ 1-Star
+
+### Green
 ![Keep green only](/output/1-Star/keep_green_only.png "Keep green only")
 
-### ⭐ Channel swap
+### Channel swap
 ![Channel swap](/output/1-Star/channels_swap.png "Channel swap")
 
-### ⭐ Black & White
+### Black & White
 Essai n°1 :
 Tout noir
 
@@ -25,10 +27,10 @@ Source : [transformer une image RGB en niveau de gris](https://www.developpez.ne
 
 ![Black & White](/output/1-Star/black_white/5-black_white.png "Black & White")
 
-### ⭐ Negative
+### Negative
 ![Negative](/output/1-Star/negative.png "Negative")
 
-### ⭐ Gradient
+### Gradient
 ![Gradient](/output/1-Star/gradient/1-gradient.png "Gradient 1")
 ![Gradient](/output/1-Star/gradient/2-gradient.png "Gradient 2")
 ![Gradient](/output/1-Star/gradient/3-gradient.png "Gradient 3")
@@ -36,37 +38,43 @@ Source : [transformer une image RGB en niveau de gris](https://www.developpez.ne
 ![Gradient](/output/1-Star/gradient/5-gradient.png "Gradient 5")
 ![Gradient](/output/1-Star/gradient/6-gradient.png "Gradient 6")
 
-### ⭐⭐ Mirror 
+## ⭐⭐ 2-Stars
+
+### Mirror 
 Bug : sil::Image::pixel(int, int): Assertion `x < _width' failed.
 J'ai finis par faire x+1 avant de changer pour image.width-1.
 
 ![Mirror](/output/2-Stars/mirror.png "Mirror")
 
-### ⭐⭐ Noisy image
+### Noisy image
 ![Noisy image](/output/2-Stars/noisy_image.png "Noisy image")
 
-### ⭐⭐ 90° rotation
+### 90° rotation
 ![90° rotation](/output/2-Stars/rotation_90.png "90° rotation")
 
-### ⭐⭐ RGB split
+### RGB split
 ![RGB split](/output/2-Stars/RGB_split.png "RGB split")
 
-### ⭐⭐ Brightness
+### Brightness
 ![Brightness light](/output/2-Stars/brightness_light.jpg "Brightness light")
 ![Brightness dark](/output/2-Stars/brightness_dark.jpg "Brightness dark")
 
-### ⭐⭐(⭐) Disk
+### Disk
 ![Disk](/output/2-Stars/disk.png "Disk")
 
-##### ⭐⭐ Circle
+#####  Circle
 ![Circle](/output/2-Stars/circle.png "Circle")
 
-##### ⭐⭐ Animation
+##### Animation
 ![Animation](/output/2-Stars/animation.gif "Animation")
 
-##### ⭐⭐⭐ Rose window
-![Rose window](/output/2-Stars/rose_window.png "Rose window")
+## ⭐⭐⭐ 3-Stars
 
-### ⭐⭐⭐ Glitch
+##### Rose window
+![Rose window](/output/3-Stars/rose_window.png "Rose window")
 
-### ⭐⭐⭐⭐ Vortex
+### Glitch
+
+## ⭐⭐⭐⭐ 4-Stars
+
+### Vortex

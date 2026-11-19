@@ -154,6 +154,8 @@ void animation(sil::Image& image)
     }
 }
 
+// ! 3-Stars
+
 void rose_window(sil::Image& image)
 {
     int radius{100};
@@ -172,7 +174,14 @@ void rose_window(sil::Image& image)
     circle(image, thinkness, radius, img_x_center-(radius/2), img_y_center-85);
 }
 
-void mosaic(sil::Image& image)
+void glitch(sil::Image& image)
+{
+
+}
+
+// ! 4-Stars
+
+void vortex(sil::Image& image)
 {
 
 }
@@ -249,9 +258,21 @@ int main()
     //     sil::Image image{500, 500};
     //     animation(image);
     // }
+    // ! 3-Stars
+    // {
+    //     sil::Image image{500, 500};
+    //     rose_window(image);
+    //     image.save("output/3-Stars/rose_window.png");
+    // }
     {
         sil::Image image{500, 500};
-        rose_window(image);
-        image.save("output/2-Stars/rose_window.png");
+        glitch(image);
+        image.save("output/3-Stars/glitch.png");
+    }
+    // ! 4-Stars
+    {
+        sil::Image image{500, 500};
+        vortex(image);
+        image.save("output/3-Stars/vortex.png");
     }
 }
