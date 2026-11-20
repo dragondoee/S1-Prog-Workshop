@@ -41,7 +41,7 @@ Source : [transformer une image RGB en niveau de gris](https://www.developpez.ne
 ## ⭐⭐ 2-Stars
 
 ### Mirror 
-Bug : sil::Image::pixel(int, int): Assertion `x < _width' failed.
+Error : sil::Image::pixel(int, int): Assertion `x < _width' failed.
 J'ai finis par faire x+1 avant de changer pour image.width-1.
 
 ![Mirror](/output/2-Stars/mirror.png "Mirror")
@@ -74,7 +74,11 @@ J'ai finis par faire x+1 avant de changer pour image.width-1.
 ![Rose window](/output/3-Stars/rose_window.png "Rose window")
 
 ### Glitch
+Error : glm::vec3& sil::Image::pixel(int, int): Assertion `x < _width' failed.
+Bug : J'avais mal fait ma condition de boucle : x < vector[0] || p1[0]+x < image.width()
+C'était pour proteger une sortie de l'image mais l'effet était autre, et j'ai mis la protection à un autre endroit.
 
-## ⭐⭐⭐⭐ 4-Stars
+![Glitch bug](/output/3-Stars/glitch/bug-glitch.png "Glitch bug")
 
-### Vortex
+
+![Glitch](/output/3-Stars/glitch.png "Glitch")

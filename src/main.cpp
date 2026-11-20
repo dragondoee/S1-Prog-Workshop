@@ -2,6 +2,7 @@
 #include <optional>
 #include "random.hpp"
 #include <cmath>
+#include <vector>
 
 // ! 1-Star
 void keep_green_only(sil::Image& image)
@@ -174,16 +175,55 @@ void rose_window(sil::Image& image)
     circle(image, thinkness, radius, img_x_center-(radius/2), img_y_center-85);
 }
 
-void glitch(sil::Image& image)
+void glitch(sil::Image& image, int quantity)
 {
+    sil::Image original_img{image};
 
-}
+    std::vector<std::vector<std::vector<int>>> matrix{};
+    for (size_t i { 0 }; i < quantity; ++i)
+    {
+        matrix.push_back( std::vector<std::vector<int>> {
+            std::vector<int> {
+                random_int(5, 30), 
+                random_int(2, 10)
+            },
+            std::vector<int> {
+                random_int(0, image.width()-1), 
+                random_int(0, image.height()-1)
+            },  
+            std::vector<int> {
+                random_int(0, image.width()-1),
+                random_int(0, image.height()-1)
+            }
+        });
+    }
 
-// ! 4-Stars
+    for (std::vector<std::vector<int>> exchange : matrix)
+    {
+        std::vector<int> vector{exchange[0]};
+        std::vector<int> p1{exchange[1]};
+        std::vector<int> p2{exchange[2]};
 
-void vortex(sil::Image& image)
-{
+        for (int x{0}; x < vector[0]; x++)
+        {
+            for (int y{0}; y < vector[1]; y++)
+            {
+                int next_p1_x{(p1[0]+x)<image.width()? p1[0]+x : image.width()-1};
+                int next_p1_y{(p1[1]+y)<image.height()? p1[1]+y : image.height()-1};
+                int next_p2_x{(p2[0]+x)<image.width()? p2[0]+x : image.width()-1};
+                int next_p2_y{(p2[1]+y)<image.height()? p2[1]+y : image.height()-1};
 
+                image.pixel(next_p1_x, next_p1_y) = original_img.pixel(
+                    next_p2_x, 
+                    next_p2_y
+                );
+                image.pixel(next_p2_x, next_p2_y) = original_img.pixel(
+                    next_p1_x, 
+                    next_p1_y
+                );
+            }
+        }
+    }
 }
 
 int main()
@@ -258,6 +298,7 @@ int main()
     //     sil::Image image{500, 500};
     //     animation(image);
     // }
+
     // ! 3-Stars
     // {
     //     sil::Image image{500, 500};
@@ -265,14 +306,8 @@ int main()
     //     image.save("output/3-Stars/rose_window.png");
     // }
     {
-        sil::Image image{500, 500};
-        glitch(image);
+        sil::Image image{"images/logo.png"};
+        glitch(image, 70);
         image.save("output/3-Stars/glitch.png");
-    }
-    // ! 4-Stars
-    {
-        sil::Image image{500, 500};
-        vortex(image);
-        image.save("output/3-Stars/vortex.png");
     }
 }
