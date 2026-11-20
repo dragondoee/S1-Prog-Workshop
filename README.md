@@ -75,10 +75,18 @@ J'ai finis par faire x+1 avant de changer pour image.width-1.
 
 ### Glitch
 Error : glm::vec3& sil::Image::pixel(int, int): Assertion `x < _width' failed.
+
+
 Bug : J'avais mal fait ma condition de boucle : x < vector[0] || p1[0]+x < image.width()
+
 C'était pour proteger une sortie de l'image mais l'effet était autre, et j'ai mis la protection à un autre endroit.
 
+
 ![Glitch bug](/output/3-Stars/glitch/bug-glitch.png "Glitch bug")
-
-
 ![Glitch](/output/3-Stars/glitch.png "Glitch")
+
+J'ai amélioré ma 1ère version du code en retirant les variables répétitives et inutiles, en modifiant les noms de variables et leur type (vector à ivec2 qui est plus adapté pour les coordonnées).
+
+Points d'amélioration possibles : 
+- Répétition pour le point1 et le point2 : on pourrait créer une fonction pour générer des coordonnées aléatoires, mais ici, pour 2 points, j'ai trouvé que ce n'était pas forcément nécessaire. 
+- Répétition de ligne pour l'échange de pixels avec juste les valeurs interverties. 

@@ -2,7 +2,6 @@
 #include <optional>
 #include "random.hpp"
 #include <cmath>
-#include <vector>
 
 // ! 1-Star
 void keep_green_only(sil::Image& image)
@@ -177,50 +176,18 @@ void rose_window(sil::Image& image)
 
 void glitch(sil::Image& image, int quantity)
 {
-    sil::Image original_img{image};
-
-    std::vector<std::vector<std::vector<int>>> matrix{};
-    for (size_t i { 0 }; i < quantity; ++i)
+    for (int i{0}; i < quantity; i++)
     {
-        matrix.push_back( std::vector<std::vector<int>> {
-            std::vector<int> {
-                random_int(5, 30), 
-                random_int(2, 10)
-            },
-            std::vector<int> {
-                random_int(0, image.width()-1), 
-                random_int(0, image.height()-1)
-            },  
-            std::vector<int> {
-                random_int(0, image.width()-1),
-                random_int(0, image.height()-1)
-            }
-        });
-    }
+        glm::ivec2 size{random_int(1, image.width()/10), random_int(1, image.height()/30)};
+        glm::ivec2 point1{random_int(0, image.width()-size.x), random_int(0, image.height()-size.y)};
+        glm::ivec2 point2{random_int(0, image.width()-size.x), random_int(0, image.height()-size.y)};
 
-    for (std::vector<std::vector<int>> exchange : matrix)
-    {
-        std::vector<int> vector{exchange[0]};
-        std::vector<int> p1{exchange[1]};
-        std::vector<int> p2{exchange[2]};
-
-        for (int x{0}; x < vector[0]; x++)
+        for (int x{0}; x < size.x; x++)
         {
-            for (int y{0}; y < vector[1]; y++)
+            for (int y{0}; y < size.y; y++)
             {
-                int next_p1_x{(p1[0]+x)<image.width()? p1[0]+x : image.width()-1};
-                int next_p1_y{(p1[1]+y)<image.height()? p1[1]+y : image.height()-1};
-                int next_p2_x{(p2[0]+x)<image.width()? p2[0]+x : image.width()-1};
-                int next_p2_y{(p2[1]+y)<image.height()? p2[1]+y : image.height()-1};
-
-                image.pixel(next_p1_x, next_p1_y) = original_img.pixel(
-                    next_p2_x, 
-                    next_p2_y
-                );
-                image.pixel(next_p2_x, next_p2_y) = original_img.pixel(
-                    next_p1_x, 
-                    next_p1_y
-                );
+                image.pixel(point1.x + x, point1.y + y) = image.pixel(point2.x + x, point2.y + y);
+                image.pixel(point2.x + x, point2.y + y) = image.pixel(point1.x + x, point1.y + y);
             }
         }
     }
