@@ -62,15 +62,15 @@ J'ai finis par faire x+1 avant de changer pour image.width-1.
 ### Disk
 ![Disk](/output/2-Stars/disk.png "Disk")
 
-#####  Circle
+####  Circle
 ![Circle](/output/2-Stars/circle.png "Circle")
 
-##### Animation
+#### Animation
 ![Animation](/output/2-Stars/animation.gif "Animation")
 
 ## ⭐⭐⭐ 3-Stars
 
-##### Rose window
+### Rose window
 ![Rose window](/output/3-Stars/rose_window.png "Rose window")
 
 ### Glitch

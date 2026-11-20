@@ -267,14 +267,14 @@ int main()
     // }
 
     // ! 3-Stars
-    // {
-    //     sil::Image image{500, 500};
-    //     rose_window(image);
-    //     image.save("output/3-Stars/rose_window.png");
-    // }
     {
-        sil::Image image{"images/logo.png"};
-        glitch(image, 70);
-        image.save("output/3-Stars/glitch.png");
+        sil::Image image{500, 500};
+        rose_window(image);
+        image.save("output/3-Stars/rose_window.png");
     }
+    // {
+    //     sil::Image image{"images/logo.png"};
+    //     glitch(image, 70);
+    //     image.save("output/3-Stars/glitch.png");
+    // }
 }
