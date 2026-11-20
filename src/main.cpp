@@ -2,6 +2,7 @@
 #include <optional>
 #include "random.hpp"
 #include <cmath>
+#include <numbers>
 
 // ! 1-Star
 void keep_green_only(sil::Image& image)
@@ -156,22 +157,21 @@ void animation(sil::Image& image)
 
 // ! 3-Stars
 
-void rose_window(sil::Image& image)
+void rose_window(sil::Image& image, int nb_petal)
 {
-    int radius{100};
-    int thinkness{10};
-    int img_x_center{image.width()/2};
-    int img_y_center{image.height()/2};
+    int radius{110};
+    int thinkness{5};
+    glm::ivec2 center{image.width()/2, image.height()/2};
 
     circle(image, thinkness, radius);
 
-    circle(image, thinkness, radius, img_x_center+(radius/2), img_y_center+85);
-    circle(image, thinkness, radius, img_x_center+radius-(thinkness/2));
-    circle(image, thinkness, radius, img_x_center+(radius/2), img_y_center-85);
+    for (int i{0}; i < nb_petal; i++)
+    {
+        double theta{(i*((nb_petal%2)==0?2:1)*std::numbers::pi)/nb_petal};
+        double r{radius*std::cos(nb_petal*theta)};
 
-    circle(image, thinkness, radius, img_x_center-(radius/2), img_y_center+85);
-    circle(image, thinkness, radius, img_x_center-radius+(thinkness/2));
-    circle(image, thinkness, radius, img_x_center-(radius/2), img_y_center-85);
+        circle(image, thinkness, radius, center.x + (r*std::cos(theta)), center.y + (r*std::sin(theta))); 
+    }
 }
 
 void glitch(sil::Image& image, int quantity)
@@ -269,7 +269,7 @@ int main()
     // ! 3-Stars
     {
         sil::Image image{500, 500};
-        rose_window(image);
+        rose_window(image, 6);
         image.save("output/3-Stars/rose_window.png");
     }
     // {
